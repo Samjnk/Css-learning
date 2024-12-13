@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل وسوم CSS</title>
+    <style>
+        /* Reset & Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --bg-color: #ecf0f1;
+            --card-bg: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .css-properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 8px 8px 15px var(--shadow-color),
+                       -8px -8px 15px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 12px 20px var(--shadow-color),
+                       -12px -12px 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .property-name {
+            color: var(--secondary-color);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .property-description {
+            margin-bottom: 1rem;
+        }
+
+        .example-code {
+            background: #f7f9fc;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin-bottom: 1rem;
+        }
+
+        .example-preview {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .css-properties {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .property-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">تغيير المظهر</button>
+    <header>
+        <h1>دليل وسوم CSS الشامل</h1>
+        <p>تعرف على جميع وسوم CSS ودورها في تنسيق صفحات الويب</p>
+    </header>
+
+    <div class="container">
+        <div class="css-properties">
+            <!-- Display Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Display</h2>
+                <p class="property-description">يتحكم في كيفية عرض العنصر في الصفحة</p>
+                <div class="example-code">
+                    display: block;
+                    display: inline;
+                    display: flex;
+                    display: grid;
+                    display: none;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>block: يأخذ العرض الكامل</li>
+                        <li>inline: يأخذ عرض المحتوى فقط</li>
+                        <li>flex: نظام تخطيط مرن</li>
+                        <li>grid: نظام الشبكة</li>
+                        <li>none: يخفي العنصر</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Position Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Position</h2>
+                <p class="property-description">يحدد كيفية تموضع العنصر</p>
+                <div class="example-code">
+                    position: static;
+                    position: relative;
+                    position: absolute;
+                    position: fixed;
+                    position: sticky;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>static: الوضع الافتراضي</li>
+                        <li>relative: نسبي لموقعه الأصلي</li>
+                        <li>absolute: نسبي لأقرب عنصر أب</li>
+                        <li>fixed: ثابت في الشاشة</li>
+                        <li>sticky: يلتصق عند التمرير</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Margin & Padding -->
+            <div class="property-card">
+                <h2 class="property-name">Margin & Padding</h2>
+                <p class="property-description">التحكم في المسافات الخارجية والداخلية</p>
+                <div class="example-code">
+                    margin: 10px;
+                    padding: 10px;
+                    margin: 10px 20px;
+                    padding: 10px 20px 30px 40px;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>margin: المسافة الخارجية</li>
+                        <li>padding: المسافة الداخلية</li>
+                        <li>يمكن تحديد قيم مختلفة للجوانب الأربعة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Font Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Font</h2>
+                <p class="property-description">خصائص تنسيق النصوص</p>
+                <div class="example-code">
+                    font-size: 16px;
+                    font-weight: bold;
+                    font-family: Arial;
+                    line-height: 1.5;
+                    text-align: center;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>font-size: حجم الخط</li>
+                        <li>font-weight: سمك الخط</li>
+                        <li>font-family: نوع الخط</li>
+                        <li>line-height: ارتفاع السطر</li>
+                        <li>text-align: محاذاة النص</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Background Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Background</h2>
+                <p class="property-description">خصائص خلفية العنصر</p>
+                <div class="example-code">
+                    background-color: #fff;
+                    background-image: url('image.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>background-color: لون الخلفية</li>
+                        <li>background-image: صورة الخلفية</li>
+                        <li>background-size: حجم الخلفية</li>
+                        <li>background-position: موقع الخلفية</li>
+                        <li>background-repeat: تكرار الخلفية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Border Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Border</h2>
+                <p class="property-description">خصائص حدود العنصر</p>
+                <div class="example-code">
+                    border: 1px solid black;
+                    border-radius: 10px;
+                    border-width: 2px;
+                    border-style: dashed;
+                    border-color: red;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>border: الحدود الكاملة</li>
+                        <li>border-radius: تدوير الزوايا</li>
+                        <li>border-width: سمك الحدود</li>
+                        <li>border-style: نمط الحدود</li>
+                        <li>border-color: لون الحدود</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Flexbox Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Flexbox</h2>
+                <p class="property-description">خصائص التخطيط المرن</p>
+                <div class="example-code">
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>flex-direction: اتجاه العناصر</li>
+                        <li>justify-content: محاذاة أفقية</li>
+                        <li>align-items: محاذاة عمودية</li>
+                        <li>flex-wrap: التفاف العناصر</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Grid Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Grid</h2>
+                <p class="property-description">خصائص نظام الشبكة</p>
+                <div class="example-code">
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-gap: 20px;
+                    grid-auto-rows: minmax(100px, auto);
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>grid-template-columns: أعمدة الشبكة</li>
+                        <li>grid-gap: المسافة بين العناصر</li>
+                        <li>grid-auto-rows: ارتفاع الصفوف</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Transform Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Transform</h2>
+                <p class="property-description">خصائص تحويل العناصر</p>
+                <div class="example-code">
+                    transform: rotate(45deg);
+                    transform: scale(1.5);
+                    transform: translate(10px, 20px);
+                    transform: skew(10deg);
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>rotate: دوران العنصر</li>
+                        <li>scale: تكبير/تصغير العنصر</li>
+                        <li>translate: تحريك العنصر</li>
+                        <li>skew: إمالة العنصر</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Transition Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Transition</h2>
+                <p class="property-description">خصائص الانتقالات</p>
+                <div class="example-code">
+                    transition: all 0.3s ease;
+                    transition-property: transform;
+                    transition-duration: 0.5s;
+                    transition-timing-function: ease-in-out;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>transition-property: الخاصية المتغيرة</li>
+                        <li>transition-duration: مدة الانتقال</li>
+                        <li>transition-timing-function: نمط الانتقال</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Animation Properties -->
+            <div class="property-card">
+                <h2 class="property-name">Animation</h2>
+                <p class="property-description">خصائص الحركات</p>
+                <div class="example-code">
+                    animation: name duration timing-function;
+                    animation-delay: 2s;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                </div>
+                <div class="property-details">
+                    <ul>
+                        <li>animation-name: اسم الحركة</li>
+                        <li>animation-duration: مدة الحركة</li>
+                        <li>animation-timing-function: نمط الحركة</li>
+                        <li>animation-iteration-count: عدد التكرار</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.property-card');
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
